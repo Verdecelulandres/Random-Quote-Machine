@@ -2,6 +2,8 @@ import React from 'react';
 import './App.scss';
 
 
+  let debug = true;
+
   //This URL is a Quote DB in JSON and its used by the original FCC project
   const quoteURL = 'https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json';
 
@@ -10,11 +12,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       quoteList: [],
-      quote: "",
-      author: "",
-      prevQuote: "",
-      prevAuth: "",
-      quoteIndexList: []
+      quote: 'Get a random quote clicking the button below!',
+      author: 'Andrew DaGreen',
+      quoteIndexList: [],
+      currentIndex: -1
     }
     this.generateNewQuote= this.generateNewQuote.bind(this);
     this.getPrevQuote = this.getPrevQuote.bind(this);
@@ -27,8 +28,7 @@ class App extends React.Component {
     const { quotes } = parsedResponse;
     this.setState(state =>({
       quoteList: quotes,
-      quote: 'Get a random quote clicking the button below!',
-      author: 'Andrew DaGreen'
+
     })); 
     
   } catch (exception) {
@@ -42,36 +42,78 @@ class App extends React.Component {
 
   //This function changes the quote and author
   generateNewQuote = () => { 
+
+    if(debug) console.log("Clicked next quote btn", this.state.currentIndex);
+    //If we are not in the last generated quote then we just want to advance
+    if(this.state.currentIndex > 0 && this.state.currentIndex !== this.state.quoteIndexList.length -1 ){
+      
+      let newQuote = {
+        text: this.state.quoteList[this.state.currentIndex+1].quote,
+        auth: this.state.quoteList[this.state.currentIndex+1].author    
+      };          
+      this.setState(state =>({
+        quote: newQuote.text,
+        author: newQuote.auth,
+        currentIndex: this.state.currentIndex +1
+      }));
+      if(debug) console.log("if index is not 0 or the last in the list", this.state.currentIndex);
+    } else {
+      if(debug) console.log("Index should be 0 or the last", this.state.currentIndex);
     //Gets a random index from the quotelist lenght
     let randomIndex = Math.floor(Math.random()*this.state.quoteList.length); 
     //Created an object to hold the values of the new quote and its author. 
     //I needed to access the info this way because trying to get the quoteList from state in the setState function gave me an error
+      var updatedIndexList;
+    if(this.state.currentIndex === -1) {updatedIndexList =[randomIndex];}
+    else { updatedIndexList = this.state.quoteIndexList.concat(randomIndex);}
     let newQuote = {
           text: this.state.quoteList[randomIndex].quote,
           auth: this.state.quoteList[randomIndex].author    
         };            
     this.setState(state =>({
-      //We keep track of the indexes in case we want to go back or forward
-      quoteIndexList: [...this.state.quoteIndexList, randomIndex],
        //previous quote and author attributes will preserve the current quote before generating a new one in case the user wants to go back
-      prevQuote: this.state.quote,
-      prevAuth: this.state.author,
+ //   prevQuote: this.state.quote,
+//    prevAuth: this.state.author,
       quote: newQuote.text,
-      author: newQuote.auth
+      author: newQuote.auth,
+      //We keep track of the indexes in case we want to go back or forward
+      quoteIndexList: updatedIndexList,
+      currentIndex: this.state.currentIndex +1
     }));
   }
+  if(debug) console.log("Index after functions ended: ", this.state.currentIndex);
+  if(debug) console.log("Index array:  ", this.state.quoteIndexList);
+}
   
-  getPrevQuote = () => {
-
+getPrevQuote = () => {
+  if (this.state.currentIndex !== 0) {
+    const prevIndex = this.state.currentIndex - 1;
+    const newQuote = {
+      text: this.state.quoteList[this.state.quoteIndexList[prevIndex]].quote,
+      auth: this.state.quoteList[this.state.quoteIndexList[prevIndex]].author    
+    };          
+    this.setState({
+      quote: newQuote.text,
+      author: newQuote.auth,
+      currentIndex: prevIndex
+    });
+    if (debug) console.log("prev quote fetched ", prevIndex);
   }
+}
+
   
   render() {
+  /*  if(this.state.currentIndex === 0){
+      document.getElementById("previous-quote").disabled = true;
+    } else {
+      document.getElementById("previous-quote").disabled = false;
+    }*/
     return (
       <div className="App">
         <header className="App-header">
           <div id="quote-box">
             <div id="text-container">
-              <p id="text">
+              <p id="text"><i className='fas fa-quote-left'></i>
                 {this.state.quote}
               </p>
               <cite id="author">
