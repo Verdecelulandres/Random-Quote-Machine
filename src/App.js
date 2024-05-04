@@ -11,9 +11,13 @@ class App extends React.Component {
     this.state = {
       quoteList: [],
       quote: "",
-      author: ""
+      author: "",
+      prevQuote: "",
+      prevAuth: "",
+      quoteIndexList: []
     }
     this.generateNewQuote= this.generateNewQuote.bind(this);
+    this.getPrevQuote = this.getPrevQuote.bind(this);
   };
   //async method to load the quote list into the program and set the state
  getQuotes = async (URL) => {
@@ -47,10 +51,19 @@ class App extends React.Component {
           auth: this.state.quoteList[randomIndex].author    
         };            
     this.setState(state =>({
+      //We keep track of the indexes in case we want to go back or forward
+      quoteIndexList: [...this.state.quoteIndexList, randomIndex],
+       //previous quote and author attributes will preserve the current quote before generating a new one in case the user wants to go back
+      prevQuote: this.state.quote,
+      prevAuth: this.state.author,
       quote: newQuote.text,
       author: newQuote.auth
     }));
-  } 
+  }
+  
+  getPrevQuote = () => {
+
+  }
   
   render() {
     return (
@@ -58,16 +71,23 @@ class App extends React.Component {
         <header className="App-header">
           <div id="quote-box">
             <div id="text-container">
-              <blockquote id="text">
+              <p id="text">
                 {this.state.quote}
-              </blockquote>
+              </p>
               <cite id="author">
                 - {this.state.author}
               </cite> 
             </div>
-            <div id="btn-container">
+            <div className="row" id="btn-container">
+              <div className="col-xs-4">
+               <button className="btn btn-default" id="previous-quote" onClick={this.getPrevQuote}>Last Quote</button>
+              </div>
+              <div className="col-xs-4">
               <a id="tweet-quote" href={encodeURI(`https://twitter.com/intent/tweet?text= ${this.state.quote} - ${this.state.author}`)} target="_blank">Tweet it!</a>
-              <button id="new-quote" onClick={this.generateNewQuote}>Next Quoute</button> {/*Button for changing the quoute in the state*/}
+              </div>
+              <div className="col-xs-4">
+              <button className="btn btn-default" id="new-quote" onClick={this.generateNewQuote}>Next Quoute</button> {/*Button for changing the quoute in the state*/}
+              </div>
             </div>
           </div>
         </header>
