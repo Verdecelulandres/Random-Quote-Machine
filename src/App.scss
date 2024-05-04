@@ -2,7 +2,8 @@
   text-align: center;
 
   .App-header {
-    background-color: #282c34;
+    background: rgb(63,94,251);
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -10,6 +11,16 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+    #quote-box {
+      width: 500px;
+      background-color: rgba(63,94,251,0.1);
+      border-radius: 50%;
+      color: white;
+      gap: 20px;
+    }
+    #author {
+      text-align: end;
+    }
   }
 }
 

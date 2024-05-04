@@ -56,13 +56,20 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <p>
-            {this.state.quote}
-          </p>
-          <cite>
-            - {this.state.author}
-          </cite>
-          <button onClick={this.generateNewQuote}>Next Quoute</button> {/*Button for changing the quoute in the state*/}
+          <div id="quote-box">
+            <div id="text-container">
+              <blockquote id="text">
+                {this.state.quote}
+              </blockquote>
+              <cite id="author">
+                - {this.state.author}
+              </cite> 
+            </div>
+            <div id="btn-container">
+              <a id="tweet-quote" href={encodeURI(`https://twitter.com/intent/tweet?text= ${this.state.quote} - ${this.state.author}`)} target="_blank">Tweet it!</a>
+              <button id="new-quote" onClick={this.generateNewQuote}>Next Quoute</button> {/*Button for changing the quoute in the state*/}
+            </div>
+          </div>
         </header>
       </div>
     );

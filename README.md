@@ -10,6 +10,11 @@ This is the first project to get the certification.
 I took guide from  youtube video sources to create this project:
     1. https://www.youtube.com/watch?v=EDWwhVoCvHM
     2. https://www.youtube.com/watch?v=-_W1jXY-2-0
+    
+
+APIs Used:    
+    3. https://cssgradient.io/
+    4.https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json'
 
 I just used #1 to get started because I did not know how to set-up react and node in my computer. 
 I used #2 to understand how to get the quotes database, fetch it with an async function to use in my react app.
