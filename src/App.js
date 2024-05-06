@@ -17,7 +17,7 @@ class App extends React.Component {
       author: 'Andrew DaGreen',
       quoteIndexList: [],
       currentIndex: -1,
-      backColors: ['rgb(63,94,251)','rgba(63,94,251,1)', 'rgba(252,70,107,1)'] // base, color1, color2
+      backColors: ['rgb(63,94,251)','rgba(63,94,251,1)', 'rgba(252,70,107,1)', 'radial', 'circle'] // base, color1, color2, line or circle, orientation
     }
     this.generateNewQuote= this.generateNewQuote.bind(this);
     this.getPrevQuote = this.getPrevQuote.bind(this);
@@ -61,6 +61,7 @@ class App extends React.Component {
       if(debug) console.log("if index is not 0 or the last in the list", this.state.currentIndex);
     } else {
       if(debug) console.log("Index should be 0 or the last", this.state.currentIndex);
+      this.changeColors();
     //Gets a random index from the quotelist lenght
     let randomIndex = Math.floor(Math.random()*this.state.quoteList.length); 
     //Created an object to hold the values of the new quote and its author. 
@@ -94,6 +95,7 @@ getPrevQuote = () => {
       text: this.state.quoteList[this.state.quoteIndexList[prevIndex]].quote,
       auth: this.state.quoteList[this.state.quoteIndexList[prevIndex]].author    
     };          
+    this.changeColors();
     this.setState({
       quote: newQuote.text,
       author: newQuote.auth,
@@ -103,6 +105,29 @@ getPrevQuote = () => {
   }
 }
 
+changeColors = () => {
+  let randomThreeColors = getThreeColors(rgbaArray);
+  let newColors = [...randomThreeColors];
+  let lineOrCircle = Math.random();
+
+  console.log(newColors);
+
+  if(lineOrCircle > 0.5){ //case if line
+    newColors.push('linear');
+    let verticalOrHorizontal = Math.random();
+    if(verticalOrHorizontal>0.5){ //case vertical
+      newColors.push('90deg');
+    } else { // case horizontal
+      newColors.push('0deg');
+    }
+  } else { // circle
+    newColors.push('radial');
+    newColors.push('circle');
+  }
+  this.setState({
+    backColors: newColors
+  });
+}
   
   render() {
   /*  if(this.state.currentIndex === 0){
@@ -112,7 +137,10 @@ getPrevQuote = () => {
     }*/
     return (
       <div className="App">
-        <header className="App-header">
+        <header className="App-header" style={{
+          background: this.state.backColors[0],
+          background: `${this.state.backColors[3]}-gradient(${this.state.backColors[4]}, ${this.state.backColors[1]} 0%, ${this.state.backColors[2]} 100%)`
+        }}>
           <div id="quote-box">
             <div id="text-container">
               <p id="text"><i className='fas fa-quote-left'></i>
@@ -130,7 +158,7 @@ getPrevQuote = () => {
               <a id="tweet-quote" href={encodeURI(`https://twitter.com/intent/tweet?text= ${this.state.quote} - ${this.state.author}`)} target="_blank">Tweet it!</a>
               </div>
               <div className="col-xs-4">
-              <button className="btn btn-default" id="new-quote" onClick={this.generateNewQuote}>Next Quoute</button> {/*Button for changing the quoute in the state*/}
+              <button className="btn btn-default" id="new-quote" onClick={this.generateNewQuote}>Next Quoute</button> {/*Button for changing the quote in the state*/}
               </div>
             </div>
           </div>
