@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
+import { faQuoteRight } from '@fortawesome/free-solid-svg-icons';
   let debug = true;
 
   //This URL is a Quote DB in JSON and its used by the original FCC project
@@ -145,9 +147,8 @@ changeColors = () => {
         }}>
           <div id="quote-box">
             <div id="text-container">
-              <p id="text"><i className='fas fa-quote-left'></i>
-                {this.state.quote}
-              </p>
+            <FontAwesomeIcon icon={faQuoteLeft} id="quote-simbol"/> 
+              <p id="text"> {this.state.quote} </p>
               <cite id="author">
                 - {this.state.author}
               </cite> 

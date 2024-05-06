@@ -33,9 +33,23 @@ $initial_background: rgba(63,94,251,0.1);
       color: black;
       border: 2px solid black;
       box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
-      #author {
-        text-align: right;
+      #text-container {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        #quote-simbol {
+          align-items: flex-start;
+        }
+        #text {
+          max-width: 500px;
+          text-align: center;
+        }
+        #author {
+          align-items: flex-end;
+        }
       }
+     
+      
       #btn-container {
         width: 650px;
       }
