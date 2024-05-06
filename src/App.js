@@ -1,8 +1,10 @@
 import React from 'react';
 import './App.scss';
 import { colorArray, rgbaArray, getThreeColors } from './background.js';
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
   let debug = true;
 
   //This URL is a Quote DB in JSON and its used by the original FCC project
@@ -152,13 +154,13 @@ changeColors = () => {
             </div>
             <div className="row" id="btn-container">
               <div className="col-xs-4">
-               <button className="btn btn-default" id="previous-quote" onClick={this.getPrevQuote}>Last Quote</button>
+               <button className="btn btn-primary" id="previous-quote" onClick={this.getPrevQuote}><FontAwesomeIcon icon={faArrowLeft} /> Last Quote</button>
               </div>
               <div className="col-xs-4">
-              <a id="tweet-quote" href={encodeURI(`https://twitter.com/intent/tweet?text= ${this.state.quote} - ${this.state.author}`)} target="_blank">Tweet it!</a>
+              <a id="tweet-quote" href={encodeURI(`https://twitter.com/intent/tweet?text= ${this.state.quote} - ${this.state.author}`)} target="_blank"><FontAwesomeIcon icon={faXTwitter} style={{color: this.state.backColors[0]}}/></a>
               </div>
               <div className="col-xs-4">
-              <button className="btn btn-default" id="new-quote" onClick={this.generateNewQuote}>Next Quoute</button> {/*Button for changing the quote in the state*/}
+              <button className="btn btn-primary" id="new-quote" onClick={this.generateNewQuote}>Next Quoute <FontAwesomeIcon icon={faArrowRight} /></button> {/*Button for changing the quote in the state*/}
               </div>
             </div>
           </div>

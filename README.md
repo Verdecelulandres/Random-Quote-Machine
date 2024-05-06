@@ -26,3 +26,5 @@ The template code was provided by running the npx create-react-app command
 
 The main functionality was made with React. Main styling was done with Sass and buttons and layout was partially done with Bootstrap.
 
+My project changes the colors of the background using the linear and radial gradient CSS functions, just because I thought it looked prettier.
+

@@ -23,16 +23,21 @@ $initial_background: rgba(63,94,251,0.1);
       flex-flow: column nowrap;
       align-items: center;
       justify-content: center;
+      gap: 20px;
       width: auto;
-      max-width: 750px;
+      max-width: 650px;
       height: auto;
       background-color: white;
       border-radius: 10px;
-      color: black;
       padding: 30px;
-
+      color: black;
+      border: 2px solid black;
+      box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
       #author {
-        text-align: end;
+        text-align: right;
+      }
+      #btn-container {
+        width: 650px;
       }
     }
     
