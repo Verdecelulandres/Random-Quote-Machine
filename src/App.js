@@ -2,6 +2,7 @@ import React from 'react';
 import './App.scss';
 
 
+
   let debug = true;
 
   //This URL is a Quote DB in JSON and its used by the original FCC project

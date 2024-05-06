@@ -1,5 +1,12 @@
+$initial_background: rgba(63,94,251,0.1);
+*{
+  border: 2px solid black;
+}
+
 .App {
   text-align: center;
+
+
 
   .App-header {
     background: rgb(63,94,251);
@@ -12,15 +19,23 @@
     font-size: calc(10px + 2vmin);
     color: white;
     #quote-box {
-      width: 500px;
-      background-color: rgba(63,94,251,0.1);
-      border-radius: 50%;
-      color: white;
-      gap: 20px;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      max-width: 750px;
+      height: auto;
+      background-color: white;
+      border-radius: 10px;
+      color: black;
+      padding: 30px;
+
+      #author {
+        text-align: end;
+      }
     }
-    #author {
-      text-align: end;
-    }
+    
   }
 }
 
