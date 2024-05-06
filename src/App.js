@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-
+import { colorArray, rgbaArray, getThreeColors } from './background.js';
 
 
   let debug = true;
@@ -16,7 +16,8 @@ class App extends React.Component {
       quote: 'Get a random quote clicking the button below!',
       author: 'Andrew DaGreen',
       quoteIndexList: [],
-      currentIndex: -1
+      currentIndex: -1,
+      backColors: ['rgb(63,94,251)','rgba(63,94,251,1)', 'rgba(252,70,107,1)'] // base, color1, color2
     }
     this.generateNewQuote= this.generateNewQuote.bind(this);
     this.getPrevQuote = this.getPrevQuote.bind(this);

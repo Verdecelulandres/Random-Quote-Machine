@@ -1,7 +1,7 @@
 
 //Took this colors array from https://gist.github.com/mucar/3898821
 
-const colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
+export const colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
 		  '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
 		  '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', 
 		  '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
@@ -16,7 +16,7 @@ const colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
  
  //convert hex colors into RGBA format
 
- const rgbaArray = colorArray.map(color => {
+ export const rgbaArray = colorArray.map(color => {
     let r = parseInt(color.substring(1,3), 16);
     let g = parseInt(color. substring(3,5), 16);
     let b = parseInt(color.substring(5,7), 16);
@@ -26,7 +26,7 @@ const colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
 
 
  //Gets 3 random colors from the rgba array
- const getThreeColors = (arr) => {
+ export const getThreeColors = (arr) => {
     let baseColor = arr[Math.floor(Math.random()*arr.length)];
     let colorOne = arr[Math.floor(Math.random()*arr.length)];
     let colorTwo = arr[Math.floor(Math.random()*arr.length)];
