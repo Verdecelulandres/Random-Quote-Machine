@@ -1,3 +1,5 @@
+View the project live: https://verdecelulandres.github.io/Random-Quote-Machine/.
+
 This project is a Random Quote machine to get the FrontEnd Libraries certification.
 
 https://www.freecodecamp.org/learn/front-end-development-libraries/front-end-development-libraries-projects/build-a-random-quote-machine
